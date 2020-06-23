@@ -13,12 +13,4 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
 sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-sed -i '$a src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git' feeds.conf.default
-
-
-# cd openwrt
-# cd feeds/luci/applications
-git clone https://github.com/kannychak/luci-app-syncthing
-git clone https://github.com/rufengsuixing/luci-app-adguardhome
-git clone https://github.com/garypang13/openwrt-adguardhome
-git clone https://github.com/pymumu/luci-app-smartdns
+#sed -i '$a src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git' feeds.conf.default

@@ -6,6 +6,6 @@ src-git helloworld https://github.com/fw876/helloworld
 src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
 src-git syncthing https://github.com/kannychak/luci-app-syncthing
 src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome
-src-git openwrt-adguardhome https://github.com/garypang13/openwrt-adguardhome
-src-git luci-smartdns https://github.com/pymumu/luci-app-smartdns
+src-git openwrtadguardhome https://github.com/garypang13/openwrt-adguardhome
+src-git lucismartdns https://github.com/pymumu/luci-app-smartdns
 src-git smartdns https://github.com/pymumu/smartdns.git

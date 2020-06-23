@@ -16,6 +16,7 @@ sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.
 sed -i '$a src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git' feeds.conf.default
 
 
+cd openwrt
 cd feeds/luci/applications
 git clone https://github.com/kannychak/luci-app-syncthing
 git clone https://github.com/rufengsuixing/luci-app-adguardhome

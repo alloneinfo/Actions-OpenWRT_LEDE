@@ -20,4 +20,4 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 #git clone https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
 #git clone https://github.com/pymumu/smartdns.git package/smartdns
 
-git clone https://github.com/kannychak/luci-app-syncthing package/luci-app-syncthing
+git clone https://github.com/kannychak/luci-app-syncthing feeds/luci/applications/luci-app-syncthing

@@ -26,6 +26,7 @@ cd feeds
 mkdir custom
 cd custom
 git clone https://github.com/rufengsuixing/luci-app-adguardhome
+git clone https://github.com/pymumu/openwrt-smartdns
 git clone https://github.com/pymumu/luci-app-smartdns -b lede
 git clone https://github.com/kannychak/luci-app-syncthing
 

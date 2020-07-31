@@ -23,7 +23,7 @@ sed -i '$a src-git myfeeds https://github.com/kannychak/openwrt_feeds' feeds.con
 #git clone https://github.com/pymumu/smartdns.git package/smartdns
 
 
-cd feeds
+# cd feeds
 mkdir custom
 cd custom
 git clone https://github.com/rufengsuixing/luci-app-adguardhome

@@ -15,21 +15,9 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 # sed -i '$a src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git' feeds.conf.default
 # sed -i '$a src-link custom /custom' feeds.conf.default
-sed -i '$a src-git myfeeds https://github.com/kannychak/openwrt_feeds' feeds.conf.default
+# sed -i '$a src-git myfeeds https://github.com/kannychak/openwrt_feeds' feeds.conf.default
 
 #git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 #git clone https://github.com/garypang13/openwrt-adguardhome package/openwrt-adguardhome
 #git clone https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
 #git clone https://github.com/pymumu/smartdns.git package/smartdns
-
-
-# cd feeds
-mkdir custom
-cd custom
-git clone https://github.com/rufengsuixing/luci-app-adguardhome
-git clone https://github.com/kannychak/openwrt-adguardhome
-git clone https://github.com/pymumu/openwrt-smartdns
-git clone https://github.com/pymumu/luci-app-smartdns -b lede
-git clone https://github.com/kannychak/luci-app-syncthing
-
-git clone https://github.com/jerrykuku/luci-theme-argon

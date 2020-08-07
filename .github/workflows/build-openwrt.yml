@@ -75,10 +75,11 @@ jobs:
 
     - name: Update feeds
       run:  |
-        cd openwrt
-        ./scripts/feeds update -a
-        $GITHUB_WORKSPACE/$DIY_APPLY_SH
-        ./scripts/feeds update -a
+      chmod +x $GITHUB_WORKSPACE/$DIY_APPLY_SH
+      cd openwrt
+      ./scripts/feeds update -a
+      $GITHUB_WORKSPACE/$DIY_APPLY_SH
+      ./scripts/feeds update -a
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a

@@ -24,3 +24,5 @@ cd custom
 git clone https://github.com/rufengsuixing/luci-app-adguardhome
 git clone https://github.com/pymumu/luci-app-smartdns -b lede luci-app-smartdns
 git clone https://github.com/kannychak/luci-app-syncthing
+
+cd ../..

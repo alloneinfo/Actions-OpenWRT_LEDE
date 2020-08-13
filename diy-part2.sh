@@ -13,5 +13,6 @@
 
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./feeds/packages/net/smartdns
+rm -rf ./feeds/luci/luci-app-syncthing
 rm -rf ./feeds/packages/utils/syncthing
-
+rm -rf ./feeds/packages/utils/adguardhome

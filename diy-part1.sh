@@ -19,7 +19,7 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 git clone https://github.com/garypang13/openwrt-adguardhome package/openwrt-adguardhome
-git clone https://github.com/pymumu/luci-app-smartdns -b lede luci-app-smartdns
+git clone https://github.com/pymumu/luci-app-smartdns -b lede package/luci-app-smartdns
 git clone https://github.com/pymumu/smartdns.git package/smartdns
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 package/luci-theme-argon
 git clone https://github.com/kannychak/luci-app-syncthing package/luci-app-syncthing

@@ -75,11 +75,11 @@ jobs:
 
     - name: Update && Install feeds
       run: |
-        chmod +x $GITHUB_WORKSPACE/$DIY_APPLY_SH
+        #chmod +x $GITHUB_WORKSPACE/$DIY_APPLY_SH
         cd openwrt
         ./scripts/feeds update -a
-        $GITHUB_WORKSPACE/$DIY_APPLY_SH
-        ./scripts/feeds update -a
+        #$GITHUB_WORKSPACE/$DIY_APPLY_SH
+        #./scripts/feeds update -a
         ./scripts/feeds install -a
 
     - name: Load custom configuration

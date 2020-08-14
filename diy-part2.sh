@@ -20,3 +20,7 @@ rm -rf ./feeds/luci/luci-app-syncthing
 # 更新部份插件的版本
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=v1.7.1/g}' ./feeds/packages/utils/syncthing/Makefile
+
+date=`date +%m.%d.%Y`
+sed -i "s/DISTRIB_DESCRIPTION.*/DISTRIB_DESCRIPTION='%D %V %C by Kenny'/g" package/base-files/files/etc/openwrt_release
+sed -i "s/# REVISION:=x/REVISION:= $date/g" include/version.mk

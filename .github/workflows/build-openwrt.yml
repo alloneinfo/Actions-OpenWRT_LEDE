@@ -62,11 +62,11 @@ jobs:
     - name: Clone Myfeeds
       working-directory: /workdir
       run: |
-        sudo mkdir -p myfeeds        
-        cd myfeeds
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome
-        # git clone https://github.com/pymumu/luci-app-smartdns -b lede luci-app-smartdns
-        git clone https://github.com/kannychak/luci-app-syncthing
+        sudo mkdir -p myfeeds
+        sudo chown $USER:$GROUPS ./myfeeds        
+        git clone https://github.com/rufengsuixing/luci-app-adguardhome ./myfeeds/luci-app-adguardhome
+        # git clone https://github.com/pymumu/luci-app-smartdns -b lede ./myfeeds/luci-app-smartdns
+        git clone https://github.com/kannychak/luci-app-syncthing ./myfeeds/luci-app-syncthing
     - name: Clone source code
       working-directory: /workdir
       run: |

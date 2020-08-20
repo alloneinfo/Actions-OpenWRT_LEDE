@@ -21,6 +21,9 @@ git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/
 
 # 更新部份插件的版本
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
+
+# rm -rf ./feeds/packages/utils/syncthing
+svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=v1.8.0/g}' ./feeds/packages/utils/syncthing/Makefile
 
 date=`date +%m.%d.%Y`

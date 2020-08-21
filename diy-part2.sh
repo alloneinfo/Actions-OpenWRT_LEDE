@@ -21,7 +21,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/
 
 # 替换 luci-app-zerotier
 rm -rf ./package/lean/luci-app-zerotier
-git clone https://github.com/rufengsuixing/luci-app-zerotier.git
+git clone https://github.com/kannychak/luci-app-zerotier ./package/lean/luci-app-zerotier
 
 # 更新部份插件的版本
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile

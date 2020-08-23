@@ -26,8 +26,8 @@ git clone https://github.com/kannychak/luci-app-zerotier ./package/lean/luci-app
 # 更新部份插件的版本
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
 
-rm -rf ./feeds/packages/utils/syncthing
-svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
+# rm -rf ./feeds/packages/utils/syncthing
+# svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=1.8.0/g}' ./feeds/packages/utils/syncthing/Makefile
 sed -i '/PKG_HASH:=/{s/.*/PKG_HASH:=0abe7891d689edf5e148d257e4264e9764e4479cb935f53ccc2e3c07efc87bf0/g}' ./feeds/packages/utils/syncthing/Makefile
 

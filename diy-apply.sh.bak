@@ -1,11 +1,8 @@
 #!/bin/bash
 #=============================================================
-# https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part1.sh
-# Description: OpenWrt DIY script (after Update feeds)
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
+# 弃用！！！ 已经在通 myfeeds.sh 进行处理
+#
+# 需要增加的个人插件
 #=============================================================
 
 rm -rf ./feeds/packages/utils/syncthing

@@ -13,6 +13,4 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
 # sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-# sed -i '$a src-git infinityfreedom https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git' feeds.conf.default
 # sed -i '$a src-link custom /custom' feeds.conf.default
-# sed -i '$a src-git myfeeds https://github.com/kannychak/openwrt_feeds' feeds.conf.default

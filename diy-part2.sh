@@ -14,17 +14,13 @@
 rm -rf ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/luci-theme-argon
 
-# rm -rf ./feeds/packages/net/smartdns
-# rm -rf ./feeds/luci/luci-app-syncthing
-# rm -rf ./feeds/packages/utils/syncthing
-# rm -rf ./feeds/packages/utils/adguardhome
+rm -rf ./feeds/packages/net/smartdns
+git clone https://github.com/kannychak/openwrt-smartdns ./feeds/packages/net/smartdns
+sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
 
 # 替换 luci-app-zerotier
 rm -rf ./package/lean/luci-app-zerotier
 git clone https://github.com/kannychak/luci-app-zerotier ./package/lean/luci-app-zerotier
-
-# 更新部份插件的版本
-sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
 
 # rm -rf ./feeds/packages/utils/syncthing
 # svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing

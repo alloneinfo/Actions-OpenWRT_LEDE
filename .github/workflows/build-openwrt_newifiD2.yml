@@ -71,8 +71,8 @@ jobs:
         cd openwrt
         sudo mkdir -p myfeeds
         sudo chown $USER:$GROUPS ./myfeeds        
-        chmod +x myfeeds.sh
-        ./myfeeds.sh
+        chmod +x $GITHUB_WORKSPACE/myfeeds.sh
+        $GITHUB_WORKSPACE/myfeeds.sh
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default

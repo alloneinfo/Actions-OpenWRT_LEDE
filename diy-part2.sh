@@ -23,15 +23,15 @@ rm -rf ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/luci-theme-argon
 
 rm -rf ./feeds/packages/net/smartdns
-git clone https://github.com/kannychak/openwrt-smartdns ./feeds/packages/net/smartdns
+git clone https://github.com/alloneinfo/openwrt-smartdns ./feeds/packages/net/smartdns
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=5.2020.04/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release31/g}' ./feeds/packages/net/smartdns/Makefile
 
 # 替换 luci-app-zerotier
 rm -rf ./package/lean/luci-app-zerotier
-git clone https://github.com/kannychak/luci-app-zerotier ./package/lean/luci-app-zerotier
+git clone https://github.com/alloneinfo/luci-app-zerotier ./package/lean/luci-app-zerotier
 
 # rm -rf ./feeds/packages/utils/syncthing
-# svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
+# svn co https://github.com/alloneinfo/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
 sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=1.8.0/g}' ./feeds/packages/utils/syncthing/Makefile
 sed -i '/PKG_HASH:=/{s/.*/PKG_HASH:=04d78fbe6015334c284bf46ffcf8feb6b2b690ef810f2f0c5732cdee5cd8142a/g}' ./feeds/packages/utils/syncthing/Makefile
 #sed -i '/PKG_HASH:=/{s/.*/PKG_HASH:=skip/g}' ./feeds/packages/utils/syncthing/Makefile

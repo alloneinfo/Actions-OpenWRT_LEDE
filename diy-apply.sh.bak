@@ -6,8 +6,8 @@
 #=============================================================
 
 rm -rf ./feeds/packages/utils/syncthing
-svn co https://github.com/kannychak/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
-git clone https://github.com/kannychak/openwrt-adguardhome ./feeds/packages/utils/adguardhome
+svn co https://github.com/alloneinfo/openwrt_feeds/trunk/syncthing ./feeds/packages/utils/syncthing
+git clone https://github.com/alloneinfo/openwrt-adguardhome ./feeds/packages/utils/adguardhome
 
 rm -rf ./feeds/packages/net/smartdns
 git clone https://github.com/pymumu/openwrt-smartdns ./feeds/packages/net/smartdns
@@ -20,6 +20,6 @@ mkdir custom
 cd custom
 git clone https://github.com/rufengsuixing/luci-app-adguardhome
 git clone https://github.com/pymumu/luci-app-smartdns -b lede luci-app-smartdns
-git clone https://github.com/kannychak/luci-app-syncthing
+git clone https://github.com/alloneinfo/luci-app-syncthing
 
 cd ../..

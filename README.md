@@ -19,21 +19,29 @@ Add some meta info of your built firmware (such as firmware architecture and ins
 
 ## Clone
 git clone https://github.com/alloneinfo/openwrt-adguardhome ./myfeeds/adguardhome
+
 git clone https://github.com/rufengsuixing/luci-app-adguardhome ./myfeeds/luci-app-adguardhome
+
 git clone https://github.com/pymumu/luci-app-smartdns -b lede ./myfeeds/luci-app-smartdns
+
 git clone https://github.com/alloneinfo/luci-app-syncthing ./myfeeds/luci-app-syncthing
 
+
+##### 替换 luci-theme-argon
 rm -rf ./package/lean/luci-theme-argon
+
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/luci-theme-argon
 
 
-##### 替换 smartdns
+##### 替换 smartdns   https://github.com/pymumu/smartdns/releases
 rm -rf ./feeds/packages/net/smartdns
+
 git clone https://github.com/alloneinfo/openwrt-smartdns ./feeds/packages/net/smartdns
 
 
-##### 替换 luci-app-zerotier
+##### 替换 luci-app-zerotier  (配合自己的习惯，增加 conf 路径定义 )
 rm -rf ./package/lean/luci-app-zerotier
+
 git clone https://github.com/alloneinfo/luci-app-zerotier ./package/lean/luci-app-zerotier
 
 

@@ -16,15 +16,32 @@ It may take a long time to create a `.config` file and build the OpenWrt firmwar
 
 Add some meta info of your built firmware (such as firmware architecture and installed packages) to your repository introduction, this will save others' time.
 
+## 基础插件 （X86_efi）
+- 文件传输
+- ShoadowSocksR Plus+
+- 解锁网易云音乐
+- SmartDNS
+- 网络唤醒
+- Frpc && Frps
+- UPnp
+- KMS
+- MWAN3 分流助手
+- Zerotier
+- Syncthing 储存同步（MOD）
+- qBittorrent
+- Aria2
+- Smaba3
+- 负载均衡
+- TurboACC (SFE)
 
-## Clone
+## 增加及替换的插件
 git clone https://github.com/alloneinfo/openwrt-adguardhome ./myfeeds/adguardhome
 
 git clone https://github.com/rufengsuixing/luci-app-adguardhome ./myfeeds/luci-app-adguardhome
 
 git clone https://github.com/pymumu/luci-app-smartdns -b lede ./myfeeds/luci-app-smartdns
 
-git clone https://github.com/alloneinfo/luci-app-syncthing ./myfeeds/luci-app-syncthing
+git clone https://github.com/alloneinfo/luci-app-syncthing ./myfeeds/luci-app-syncthing    (配合自己的习惯，增加 conf 路径定义 )
 
 
 ##### 替换 luci-theme-argon
@@ -39,7 +56,7 @@ rm -rf ./feeds/packages/net/smartdns
 git clone https://github.com/alloneinfo/openwrt-smartdns ./feeds/packages/net/smartdns
 
 
-##### 替换 luci-app-zerotier  (配合自己的习惯，增加 conf 路径定义 )
+##### 替换 luci-app-zerotier
 rm -rf ./package/lean/luci-app-zerotier
 
 git clone https://github.com/alloneinfo/luci-app-zerotier ./package/lean/luci-app-zerotier

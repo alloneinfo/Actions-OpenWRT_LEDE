@@ -13,9 +13,10 @@ sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' ./inc
 sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' ./include/image.mk
 
 # 标识固件方便识别
-sed -i "s/DISTRIB_DESCRIPTION='OpenWrt'/DISTRIB_DESCRIPTION='OpenWrt by Kanny'/g" ./package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_DESCRIPTION='OpenWrt'/DISTRIB_DESCRIPTION='OpenWrt Mod by Kanny'/g" ./package/lean/default-settings/files/zzz-default-settings
 sed -i "s/hostname='OpenWrt'/hostname='OpenWrt_K'/g" ./package/base-files/files/bin/config_generate
-sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' include/version.mk
+sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' ./include/version.mk
+sed -i "s/%D %V, %C .*/%D %V, %C Mod By Kanny/g" ./package/base-files/files/etc/banner
 
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate

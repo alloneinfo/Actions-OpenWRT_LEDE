@@ -24,6 +24,9 @@ sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' include/version.mk
 rm -rf ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/luci-theme-argon
 
+# 修改默认主题为 luci-theme-argon
+sed -i "s/option mediaurlbase.*/option mediaurlbase '\/luci-static\/argon'/g" ./feeds/luci/modules/luci-base/root/etc/config/luci
+
 # 替换 SmartDNS 并更新版本
 rm -rf ./feeds/packages/net/smartdns
 git clone https://github.com/alloneinfo/openwrt-smartdns ./feeds/packages/net/smartdns

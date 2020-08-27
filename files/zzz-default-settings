@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## 且来替换 ./package/lean/default-settings/files/zzz-default-settings
+## 用来替换 ./package/lean/default-settings/files/zzz-default-settings
 
 # sed -i "s/option mediaurlbase.*/option mediaurlbase '\/luci-static\/argon'/g" ./feeds/luci/modules/luci-base/root/etc/config/luci
 

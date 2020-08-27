@@ -32,6 +32,7 @@ env:
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   SSH_ACTIONS: false
+  DEBUG_MODEL: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -164,7 +165,7 @@ jobs:
 
     - name: 建立标签信息
       id: tag
-      if: env.DEBUG_MODEL == 'false' && env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo "::set-env name=RELEASE_TAG::$(date +"%Y.%m.%d-%H")"
         echo "💽 Auto build" >> release.txt
@@ -173,10 +174,11 @@ jobs:
         echo "::set-output name=status::success"
     
     - name: 更新 Release
-      uses: softprops/action-gh-release@v1
-      if: env.DEBUG_MODEL == 'false' && steps.tag.outputs.status == 'success' && !cancelled()
+      id: create_release
+      uses: action/create-release@main
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
         tag_name: ${{ env.RELEASE_TAG }}
         body_path: release.txt

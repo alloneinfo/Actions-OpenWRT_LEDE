@@ -18,6 +18,8 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt_K'/g" ./package/base-files/files/
 sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' ./include/version.mk
 sed -i "s/%D %V, %C .*/%D %V, %C Mod By Kanny/g" ./package/base-files/files/etc/banner
 
+cp -f ../files/zzz-default-settings package/*/*/default-settings/files/zzz-default-settings
+
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 

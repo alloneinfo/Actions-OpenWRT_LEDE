@@ -34,8 +34,8 @@ sed -i "s/option mediaurlbase.*/option mediaurlbase '\/luci-static\/argon'/g" ./
 rm -rf ./feeds/packages/net/smartdns
 git clone https://github.com/alloneinfo/openwrt-smartdns ./feeds/packages/net/smartdns
 #sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=8.2020.24/g};/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=Release32/g}' ./feeds/packages/net/smartdns/Makefile
-sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=8.2020.24/g}' ./feeds/packages/net/smartdns/Makefile
-sed -i '/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=a3d3364a326374c52ec85ac52c92b31a233674f7/g}' ./feeds/packages/net/smartdns/Makefile
+sed -i '/PKG_VERSION:=/{s/.*/PKG_VERSION:=8.2020.27/g}' ./feeds/packages/net/smartdns/Makefile
+sed -i '/PKG_SOURCE_VERSION:=/{s/.*/PKG_SOURCE_VERSION:=7af6f475da372842c48f570f44b52f48616b11d6/g}' ./feeds/packages/net/smartdns/Makefile
 
 # 替换 luci-app-zerotier
 rm -rf ./package/lean/luci-app-zerotier

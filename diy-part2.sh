@@ -18,7 +18,7 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt_K'/g" ./package/base-files/files/
 sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' ./include/version.mk
 sed -i "s/%D %V, %C.*/%D %V, %C Mod By Kanny/g" ./package/base-files/files/etc/banner
 
-cp -f ./files/zzz-default-settings ./package/lean/default-settings/files/zzz-default-settings
+# cp -f ./files/zzz-default-settings ./package/lean/default-settings/files/zzz-default-settings
 
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
@@ -28,6 +28,8 @@ rm -rf ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 ./package/lean/luci-theme-argon
 
 # 修改默认主题为 luci-theme-argon
+sed -i '/uci set luci.main.mediaurlbase/d' ./package/lean/default-settings/files/zzz-default-settings
+sed -i '/uci set luci.main.lang=zh_cn/a\uci set luci.main.mediaurlbase=\/luci-static\/argon\/' ./package/lean/default-settings/files/zzz-default-settings
 sed -i "s/option mediaurlbase.*/option mediaurlbase '\/luci-static\/argon'/g" ./feeds/luci/modules/luci-base/root/etc/config/luci
 
 # 替换 SmartDNS 并更新版本

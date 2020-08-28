@@ -8,10 +8,9 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt for NewifiD2
+name: Build OpenWrt
 
 on: workflow_dispatch
-
 #on:
 #  repository_dispatch:
 #  release:
@@ -34,13 +33,13 @@ env:
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   SSH_ACTIONS: false
-  DEBUG_MODEL: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
 
 jobs:
   build:
@@ -155,33 +154,52 @@ jobs:
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+        cowurl=$(./transfer cow --block 2621440 -s --no-progress ${FIRMWARE})
+        cowurl=$(echo $cowurl | grep -o -E "https[^ ]*")
+        echo "::set-env name=COWURL::$cowurl"
+        echo "Download Link: $cowurl 🚀"
+        echo "::warning file=cowtransfer.com::$cowurl 🚀"
+
+        # ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+        # echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
     - name: 上传固件至 WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        curl -fsSL git.io/file-transfer | sh
+        wetrans=$(./transfer wet -s -p 16 --no-progress ${FIRMWARE})
+        wetrans=$(echo $wetransurl | grep -o -E "https[^ ]*")
+        echo "::set-env name=WETRANSURL::$wetransurl"
+        echo "Download Link: $wetrans 🚀"
+        echo "::warning file=wetransfer.com::$wetransurl 🚀"
+        
+        #./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
+        #echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 
     - name: 建立标签信息
-      id: tag
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
-      run: |
-        echo "::set-env name=RELEASE_TAG::$(date +"%Y.%m.%d-%H")"
-        echo "💽 Auto build" >> release.txt
-        echo "🔍 [Cowtransfer](${{ env.COWTRANSFER_URL }})" >> release.txt
-        echo "🔍 [WeTransfer](${{ env.WETRANSFER_URL }})" >> release.txt
-        echo "::set-output name=status::success"
-    
-    - name: 更新 Release
       id: create_release
-      uses: action/create-release@main
-      if: steps.tag.outputs.status == 'success' && !cancelled()
+      uses: actions/create-release@main
+      continue-on-error: true
+      if: env.REPO_TOKEN && env.UPLOAD_RELEASE == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        tag_name: ${{ env.RELEASE_TAG }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        tag_name: $(date +'%m/%d_%Y_%H/%M')_NewifiD2
+        release_name: $(date +'%m/%d %Y')_NewifiD2
+        body: |
+            国内加速下载🔥:
+            奶牛快传: ${{ env.COWURL }} 🚀 
+            WeTransfer: ${{ env.WETRANSURL }} 🚀
+            ${{ env.NOTICE }}            
+        draft: false
+        prerelease: false
+    
+    - name: 更新 Release
+      uses: csexton/release-asset-action@master
+      continue-on-error: true      
+      if: env.REPO_TOKEN && env.UPLOAD_RELEASE == 'true'
+      with:
+        pattern: "${{ env.FIRMWARE }}/*"
+        github-token: ${{ secrets.REPO_TOKEN }}
+        release-url: ${{ steps.create_release.outputs.upload_url }}

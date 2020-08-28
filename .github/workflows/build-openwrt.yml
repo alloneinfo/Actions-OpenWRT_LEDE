@@ -10,19 +10,20 @@
 
 name: Build OpenWrt
 
-on:
-  repository_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - main
-    paths:
-      - '.config'
+on: workflow_dispatch
+#on:
+#  repository_dispatch:
+#  release:
+#    types: published
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-  watch:
-    types: started
+#  watch:
+#    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -184,17 +185,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        tag_name: ${{ env.date }}_${{ env.DEVICE_NAME }}
-        release_name: ${{ env.date2 }} ${{ env.DEVICE_NAME }}
+        tag_name: $(date +'%m/%d_%Y_%H/%M')_X86
+        release_name: $(date +'%m/%d %Y')_X86
         body: |
-            墙内加速下载🔥:
-            
-            奶牛快传: ${{ env.COWURL }} 🚀
-            
+            国内加速下载🔥:
+            奶牛快传: ${{ env.COWURL }} 🚀 
             WeTransfer: ${{ env.WETRANSURL }} 🚀
-            
-            ${{ env.NOTICE }}
-            
+            ${{ env.NOTICE }}            
         draft: false
         prerelease: false
     

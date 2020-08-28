@@ -10,15 +10,17 @@
 
 name: Build OpenWrt for NewifiD2
 
-on:
-  repository_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - main
-    paths:
-      - '.config'
+on: workflow_dispatch
+
+#on:
+#  repository_dispatch:
+#  release:
+#    types: published
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:

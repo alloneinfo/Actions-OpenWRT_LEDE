@@ -62,6 +62,10 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        echo "::set-env name=date::$(date +'%m/%d_%Y_%H/%M')"
+        echo "::set-env name=date2::$(date +'%m/%d %Y')"
+        echo "::set-env name=date3::$(date +'%m.%d')"
+
 
     - name: 下载固件源代码
       working-directory: /workdir
@@ -185,13 +189,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        tag_name: $(date +'%m/%d_%Y_%H/%M')_X86
-        release_name: $(date +'%m/%d %Y')_X86
+        tag_name: ${{ env.date }}_${{ env.DEVICE_NAME }}
+        release_name: ${{ env.date2 }} ${{ env.DEVICE_NAME }}
         body: |
             国内加速下载🔥:
             奶牛快传: ${{ env.COWURL }} 🚀 
-            WeTransfer: ${{ env.WETRANSURL }} 🚀
-            ${{ env.NOTICE }}            
+            WeTransfer: ${{ env.WETRANSURL }} 🚀            
         draft: false
         prerelease: false
     

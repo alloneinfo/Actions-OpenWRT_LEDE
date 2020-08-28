@@ -16,7 +16,7 @@ sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' ./include/image.mk
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt'/DISTRIB_DESCRIPTION='OpenWrt Mod by Kanny'/g" ./package/lean/default-settings/files/zzz-default-settings
 sed -i "s/hostname='OpenWrt'/hostname='OpenWrt_K'/g" ./package/base-files/files/bin/config_generate
 sed -i '/REVISION:=/{s/.*/REVISION:= $(shell date +'%F')/g}' ./include/version.mk
-sed -i "s/%D %V, %C .*/%D %V, %C Mod By Kanny/g" ./package/base-files/files/etc/banner
+sed -i "s/%D %V, %C.*/%D %V, %C Mod By Kanny/g" ./package/base-files/files/etc/banner
 
 cp -f ./files/zzz-default-settings ./package/lean/default-settings/files/zzz-default-settings
 

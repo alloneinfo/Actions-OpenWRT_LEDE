@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt_NewifiD2
+name: Build OpenWrt for HC5861
 
 on: workflow_dispatch
 #on:
@@ -29,7 +29,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: newifid2.config
+  CONFIG_FILE: hc5861.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   SSH_ACTIONS: false
@@ -43,8 +43,8 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-18.04
 
     steps:
     - name: 准备开始
@@ -62,6 +62,10 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        echo "::set-env name=date::$(date +'%m/%d_%Y_%H/%M')"
+        echo "::set-env name=date2::$(date +'%m/%d %Y')"
+        echo "::set-env name=date3::$(date +'%m.%d')"
+
 
     - name: 下载固件源代码
       working-directory: /workdir
@@ -119,7 +123,8 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        # grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/CONFIG_TARGET_(.*)_DEVICE_generic=y/\1/' > DEVICE_NAME
+        echo "X86_64" > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::_$(cat DEVICE_NAME)"
         echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
 
@@ -185,13 +190,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        tag_name: $(date +'%m/%d_%Y_%H/%M')_NewifiD2
-        release_name: $(date +'%m/%d %Y')_NewifiD2
+        tag_name: ${{ env.date }}_${{ env.DEVICE_NAME }}
+        release_name: ${{ env.date2 }} ${{ env.DEVICE_NAME }}
         body: |
             国内加速下载🔥:
+
             奶牛快传: ${{ env.COWURL }} 🚀 
-            WeTransfer: ${{ env.WETRANSURL }} 🚀
-            ${{ env.NOTICE }}            
+            
+            WeTransfer: ${{ env.WETRANSURL }} 🚀            
         draft: false
         prerelease: false
     

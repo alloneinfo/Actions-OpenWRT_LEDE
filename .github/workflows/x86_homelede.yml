@@ -77,7 +77,7 @@ jobs:
     - name: 下载额外的插件
       run: |
         cd openwrt
-        ./prepareCompile.sh
+        
         sudo mkdir -p myfeeds
         sudo chown $USER:$GROUPS ./myfeeds        
         chmod +x $GITHUB_WORKSPACE/myfeeds.sh
@@ -90,11 +90,11 @@ jobs:
         #cd openwrt
         #$GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 下载 feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: 安装 feeds
-      run: cd openwrt && ./scripts/feeds install -a
+    - name: 下载 & 安装 feeds
+      run: |
+        # cd openwrt 
+        # ./scripts/feeds update -a
+        # ./scripts/feeds install -a
 
     - name: 加载自定义固件配置 && DIY_P2
       run: |
@@ -102,6 +102,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         #chmod +x $DIY_P2_SH
         cd openwrt
+        ./prepareCompile.sh
         #$GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: SSH 链接

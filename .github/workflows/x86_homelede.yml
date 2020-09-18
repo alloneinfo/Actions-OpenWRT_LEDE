@@ -29,7 +29,7 @@ env:
   REPO_URL: https://github.com/xiaoqingfengATGH/HomeLede
   REPO_BRANCH: k5
   FEEDS_CONF: homelede_feeds.conf.default  
-  CONFIG_FILE: x86.config
+  CONFIG_FILE: homelede.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   SSH_ACTIONS: false

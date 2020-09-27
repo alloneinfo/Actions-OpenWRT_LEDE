@@ -16,6 +16,11 @@ It may take a long time to create a `.config` file and build the OpenWrt firmwar
 
 Add some meta info of your built firmware (such as firmware architecture and installed packages) to your repository introduction, this will save others' time.
 
+## 本地配置 .config
+
+- make menuconfig 选好相关插件及配置
+- 执行 ./scripts/diffconfig.sh > x86.config
+
 ## 基础插件 （X86_efi）
 - 文件传输
 - ShoadowSocksR Plus+

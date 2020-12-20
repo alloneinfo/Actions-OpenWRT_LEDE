@@ -62,9 +62,9 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        echo "::set-env name=date::$(date +'%m/%d_%Y_%H/%M')"
-        echo "::set-env name=date2::$(date +'%m/%d %Y')"
-        echo "::set-env name=date3::$(date +'%m.%d')"
+        echo "::set-output name=date::$(date +'%m/%d_%Y_%H/%M')"
+        echo "::set-output name=date2::$(date +'%m/%d %Y')"
+        echo "::set-output name=date3::$(date +'%m.%d')"
 
 
     - name: 下载固件源代码
@@ -125,8 +125,8 @@ jobs:
         echo "::set-output name=status::success"
         # grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/CONFIG_TARGET_(.*)_DEVICE_generic=y/\1/' > DEVICE_NAME
         echo "HC5661" > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::_$(cat DEVICE_NAME)"
-        echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
+        [ -s DEVICE_NAME ] && echo "::set-output name=DEVICE_NAME::_$(cat DEVICE_NAME)"
+        echo "::set-output name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
 
     - name: 检查空间使用
       if: (!cancelled())
@@ -145,7 +145,7 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
-        echo "::set-env name=FIRMWARE::$PWD"
+        echo "::set-output name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
 
     - name: 上传固件
@@ -161,7 +161,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         cowurl=$(./transfer cow --block 2621440 -s --no-progress ${FIRMWARE})
         cowurl=$(echo $cowurl | grep -o -E "https[^ ]*")
-        echo "::set-env name=COWURL::$cowurl"
+        echo "::set-output name=COWURL::$cowurl"
         echo "Download Link: $cowurl 🚀"
         echo "::warning file=cowtransfer.com::$cowurl 🚀"
 
@@ -175,7 +175,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         wetrans=$(./transfer wet -s -p 16 --no-progress ${FIRMWARE})
         wetrans=$(echo $wetransurl | grep -o -E "https[^ ]*")
-        echo "::set-env name=WETRANSURL::$wetransurl"
+        echo "::set-output name=WETRANSURL::$wetransurl"
         echo "Download Link: $wetrans 🚀"
         echo "::warning file=wetransfer.com::$wetransurl 🚀"
         
